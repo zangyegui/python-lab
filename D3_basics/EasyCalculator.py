@@ -10,7 +10,7 @@ def easycalculator(x,y,op):
             case '/':
                 print(int(x) / int(y))
             case _:
-                print("plexse input correct caculator_note!")
+                print("please input correct calculator_note!")
     except ValueError:
         print("please input numxer")
     except ZeroDivisionError:

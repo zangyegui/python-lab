@@ -3,7 +3,7 @@ ls.sort(key = lambda x: x[1], reverse = True)
 avg_score = sum(x[1] for x in ls) / len(ls)
 best_score = max(ls,key = lambda x: x[1])
 min_score = min(ls,key = lambda x: x[1])
-fail_count = sum(1 for x in ls if x[1] <= 60)
+fail_count = sum(1 for x in ls if x[1] < 60)
 
 print(f"avrge_score = {avg_score}")
 print(f"{best_score[0]} got the best_score = {best_score[1]}")

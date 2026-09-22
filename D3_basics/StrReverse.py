@@ -1,8 +1,6 @@
-s = "Hello World"
+s = input("please input a string:")
 s2 = s[::-1]
 print(s2)
 ls = s.split()
-s3 = ls[0][::-1]
-s4 = ls[1][::-1]
-s5 = " ".join([s3,s4])
-print(s5)
+s3 = " ".join(w[::-1] for w in ls)
+print(s3)
