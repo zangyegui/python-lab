@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # _*_ coding: utf-8 _*_
 
-'欧式/华氏温度互转'
+'摄氏/华氏温度互转'
 
 def convert(value:float,unit:str = "C")->float:
     """摄氏/华氏温度互转：unit='C' 输入摄氏，unit='F' 输入华氏"""
