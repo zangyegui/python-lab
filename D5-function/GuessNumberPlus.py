@@ -11,14 +11,15 @@ def Guessnumber(low: int = 1,high: int = 100)->int:
             count += 1
             if int(n) < target:
                 print("Guess smaller")
-                n = (input("Guess again:"))
+                n = (input())
             elif int(n) > target:
                 print("Guess laeger")
-                n = (input("Guess again:"))
-        print(f"Guess correct,and you tried {count} counts")
+                n = (input())
+        return count
     except TypeError:
         print(f"please input int")
 
-Guessnumber()
-Guessnumber(1,10)
-Guessnumber('a',6)
+if __name__ =='__main__':
+    print(f"Guess correct ,you tried {Guessnumber()}")
+    print(f"Guess correct ,you tried {Guessnumber(1,10)}")
+    print(f"Guess correct ,you tried {Guessnumber('a',6)}")
