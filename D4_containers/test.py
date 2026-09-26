@@ -11,7 +11,6 @@ def FindMinAndMax(L):
                 min = i
     return(min,max)
 
-
 #test
 if(FindMinAndMax([])!=(None,None)):
     print("test failed!")
