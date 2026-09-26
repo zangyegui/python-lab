@@ -1,12 +1,13 @@
 def sum_all(*args):
-    sum = 0
+    total = 0
     for i in args:
-        if isinstance(i,(int,float)):
-            sum = sum + i
+        if not isinstance(i,(int,float)):
+            raise TypeError(f"sum_all只接收数字,收到了{i}!")
         else:
-            print("sum_all only support numbers!")
-    return sum
+            total += i
+    return total
 
 print(sum_all(1,2,3,4))
 print(sum_all())
+print((sum_all(True,1)))
 print(sum_all(1,'a',2,'b'))
