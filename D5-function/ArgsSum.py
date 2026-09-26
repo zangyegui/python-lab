@@ -1,8 +1,8 @@
 def sum_all(*args):
     total = 0
     for i in args:
-        if not isinstance(i,(int,float)):
-            raise TypeError(f"sum_all只接收数字,收到了{i}!")
+        if not isinstance(i,(int,float)) and not isinstance(i,bool):
+            raise TypeError(f"sum_all只接收数字,收到了{i!r}!")
         else:
             total += i
     return total
