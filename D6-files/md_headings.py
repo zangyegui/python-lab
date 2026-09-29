@@ -6,15 +6,7 @@ if not p.exists():
 
 with open(p,'r',encoding = 'utf-8') as f:
     for line in f:
-        count = 1
-        if(line.startswith('#')):
-            for i in range(len(line)):
-                if line[i+1] == '#':
-                    count += 1
-                else:
-                    if line[i+1] == ' ':
-                        print(f"H[{count}] {line[i+2:]}")
-                    break
-
-        else:
-            pass
+        level = len(line) - len(line.lstrip('#'))
+        content = line.lstrip('#').strip()
+        if level > 0 and line.lstrip('#').startswith(' ') :
+            print(f"H[{level}] {content}")
