@@ -8,5 +8,5 @@ with open(p,'r',encoding = 'utf-8') as f:
     for line in f:
         level = len(line) - len(line.lstrip('#'))
         content = line.lstrip('#').strip()
-        if level > 0 and line.lstrip('#').startswith(' ') :
+        if level > 0 and line.lstrip('#').startswith(' ') : # ‘#’后面跟' '才算标题
             print(f"H[{level}] {content}")
