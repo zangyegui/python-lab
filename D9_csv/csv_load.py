@@ -6,19 +6,23 @@ student = p / "students.csv"
 correctrows_count = 0
 jump = 0
 score_list = []
+avg_score = 0
+
 with open(student,'r',encoding = 'utf-8') as f:
     for row in csv.DictReader(f):
-        if len(row) == 3:
-            try:
-                score = float(row['score'])
-                score_list.append(score)
-                correctrows_count += 1
-            except ValueError:
-                jump += 1
-                continue
-        else:
+        try:
+            name = row['name']
+            subject = row['subject']
+            score = float(row['score'])
+            if not name or not subject:
+                raise ValueError("字段缺失")
+            score_list.append(score)
+            correctrows_count += 1
+        except (ValueError,TypeError):
             jump += 1
-    avg_score = sum(x for x in score_list) / len(score_list)
+            continue
+    if score_list:
+        avg_score = sum(score_list) / len(score_list)
 
 print(f"有效行数:{correctrows_count}")
 print(f"跳过行数:{jump}")
