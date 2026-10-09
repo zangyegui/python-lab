@@ -1,0 +1,5 @@
+{
+  "banned_words": ["游戏", "暴力游戏", "night"],
+  "mask_map": {"night": "sister"},
+  "report_top": 5
+}
