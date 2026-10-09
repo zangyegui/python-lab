@@ -25,15 +25,19 @@ def filter_text(txt: str, banned: dict[str,str])->tuple[str,dict[str,int]]:
             i += 1
     return (''.join(result),count_dict)
 
+def main():
+    p = Path(__file__).parent / "data" / "rename_test" / "config.json"
+    txt = "我打你这个卖暴力游戏的家伙,NigHting"
 
-p = Path(__file__).parent / "data" / "rename_test" / "config.json"
-txt = "我操死你这个卖暴力武器的家伙,NigHting"
-with open(p,'r',encoding = 'utf-8') as f:
-    obj = json.load(f)
-    for item in obj["banned_words"]:
-        obj["mask_map"][item] = obj["mask_map"].get(item,'*')
-    print(obj["mask_map"])
-    if obj["banned_words"] == None or "banned_words" not in obj:
+    with open(p,'r',encoding = 'utf-8') as f:
+        obj = json.load(f)
+    banned_words = obj.get("banned_words")
+    if not banned_words:
         raise ValueError("缺失禁词表")
-    
-    print(filter_text(txt,obj["mask_map"]))
+    masks = obj.get("mask_map",{})
+    mask_map = {w:masks.get(w,'*') for w in banned_words}
+
+    print(filter_text(txt,mask_map))
+
+if __name__ == "__main__":
+    main()
