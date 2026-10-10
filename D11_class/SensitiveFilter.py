@@ -1,6 +1,9 @@
 import json
 from pathlib import Path
 class SensitiveFilter:
+    #调用方并没有变短，甚至变长了，需要先实例化对象，但这样更标准化，禁词表和过滤方法封装在一起，方便使用
+    #词表的维护责任归对象了，属于过滤波器对象的属性
+    #当函数的参数和方法本身并没有强关联的时候，比如函数的参数是普通的整数，列表等，没有特定格式要求，直接使用裸函数更轻便
     def __init__(self,banned_dict:dict):
         self.banned = banned_dict
 
