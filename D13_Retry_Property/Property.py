@@ -94,7 +94,7 @@ def main():
             text.append(line.strip())
     words_filter1 = SensitiveFilter(obj["mask_map1"])
     print(SensitiveFilter.filter.__name__)
-    print(SensitiveFilter.banned_count)
+    print(words_filter1.banned_count)
     print(words_filter1.filter(f"{' '.join(text)}"))
 
 if __name__ == "__main__":
