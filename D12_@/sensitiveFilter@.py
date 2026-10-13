@@ -1,7 +1,19 @@
 import json
 from pathlib import Path
 from dataclasses import dataclass
+from functools import wraps
 import time
+
+
+def timer(func):
+        @wraps(func)
+        def wrapper(*args,**kwargs):
+            start = time.perf_counter()
+            result = func(*args,**kwargs)
+            interval = time.perf_counter() - start
+            print(f"{func.__name__}耗时{interval}秒")
+            return result
+        return wrapper
 
 @dataclass
 class SensitiveFilter:
@@ -9,14 +21,7 @@ class SensitiveFilter:
     #词表的维护责任归对象了，属于过滤波器对象的属性
     #当函数的参数和方法本身并没有强关联的时候，比如函数的参数是普通的整数，列表等，没有特定格式要求，直接使用裸函数更轻便
     banned:dict[str,str]
-    def timer(func):
-        def wrapper(*args,**kwargs):
-            start = time.perf_counter()
-            result = func(*args,**kwargs)
-            interval = time.perf_counter() - start
-            print(f"{func.__name__}耗时{interval}")
-            return result
-        return wrapper
+    
     @timer
     def filter(self,text:str)->tuple[str,dict[str,int]]:
         '中文词汇过滤无边界，存在误伤，正式版本修复这个问题'
@@ -52,6 +57,7 @@ def main():
         for line in f:
             text.append(line.strip())
     words_filter1 = SensitiveFilter(obj["mask_map1"])
+    print(SensitiveFilter.filter.__name__)
     print(words_filter1.filter(f"{' '.join(text)}"))
     
 
