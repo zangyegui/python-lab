@@ -12,18 +12,12 @@ def flatten(L):
         if isinstance(item,list):
             yield from flatten(item)
         else:
-            return item
+            yield item
 
         
 #test
 L = [[1,2],[3,[4,0]],5]
 
 flatten_L = []
-gen = flatten(L)
-while True:
-        try:
-            flatten_L.append(next(gen))
-        except Exception:
-            break
-print(flatten_L)
+print(list(flatten(L)))
 print(flattening_recursion(L))
